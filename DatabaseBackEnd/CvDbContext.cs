@@ -1,5 +1,6 @@
 ﻿using DatabaseBackEnd.DataSeed;
 using DatabaseBackEnd.Models;
+using DatabaseBackEnd.Models.Data;
 using DatabaseBackEnd.Models.Lookups;
 
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,13 @@ public class CvDbContext : DbContext
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
+		modelBuilder.Entity<DataText>()
+			.HasOne(x => x.Language)
+			.WithOne()
+			.HasPrincipalKey<DataText>(d => d.LanguageId)
+			.HasForeignKey<Language>(l => l.Id);
+		;
+
 		// seed initial values
 		Language[] languages = modelBuilder.SeedLanguages();
 		Profile profile = modelBuilder.SeedProfiles()[0];

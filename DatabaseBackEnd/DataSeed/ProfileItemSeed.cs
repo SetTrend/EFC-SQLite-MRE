@@ -43,8 +43,8 @@ internal static class ProfileItemSeed
 			string textId = $"ProfileItem.Label.{i}";
 
 			profileItems.Add(new ProfileItem(i, ItemDataType.String));
-			dataTexts.Add(new DataText(textId, de, itemLabels[i][0]));
-			dataTexts.Add(new DataText(textId, en, itemLabels[i][1]));
+			dataTexts.Add(new DataText(textId, "de", itemLabels[i][0]));
+			dataTexts.Add(new DataText(textId, "en", itemLabels[i][1]));
 		}
 
 		modelBuilder.Entity<ProfileItem>().HasData(profileItems);

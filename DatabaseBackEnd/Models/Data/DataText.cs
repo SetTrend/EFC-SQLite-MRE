@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseBackEnd.Models.Data;
 
-[PrimaryKey(nameof(Id), nameof(Language))]
-public class DataText(string id, Language language, string text)
+[PrimaryKey(nameof(Id), nameof(LanguageId))]
+public class DataText(string id, string languageId, string text)
 {
 	// ====== Keys ====================================
 
@@ -16,7 +16,10 @@ public class DataText(string id, Language language, string text)
 	[Length(2, 200)]
 	public string Id { get; init; } = id;
 
-	public virtual Language Language { get; set; } = language;
+	[Length(2, 2)]
+	[Column("Language")]
+	public string LanguageId { get; init; } = languageId;
+	public virtual Language Language { get; set; } = new Language(languageId);
 
 
 	// ====== Data ====================================
